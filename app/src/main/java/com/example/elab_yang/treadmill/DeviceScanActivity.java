@@ -251,7 +251,7 @@ public class DeviceScanActivity extends AppCompatActivity {
 
     private List<ScanFilter> getScanFilters() {
         List<ScanFilter> allFilters = new ArrayList<>();
-        ScanFilter scanFilter0 = new ScanFilter.Builder().setDeviceName("KNU EG0").build();
+        ScanFilter scanFilter0 = new ScanFilter.Builder().setDeviceName("HMSoft").build();
         allFilters.add(scanFilter0);
         return allFilters;
     }
