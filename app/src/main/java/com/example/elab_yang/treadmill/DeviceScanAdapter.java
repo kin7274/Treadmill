@@ -31,6 +31,7 @@ class DeviceScanViewHolder extends RecyclerView.ViewHolder{
         this.deviceAddress = itemView.findViewById(R.id.device_address);
         this.container = itemView.findViewById(R.id.container);
     }
+
 }
 
 public class DeviceScanAdapter extends RecyclerView.Adapter<DeviceScanViewHolder>{
