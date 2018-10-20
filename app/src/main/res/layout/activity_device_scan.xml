@@ -36,6 +36,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="300dp"

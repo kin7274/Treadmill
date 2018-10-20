@@ -44,7 +44,8 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
     String eat_status = "";
     String deviceAddress = "";
 
-    String aabbcc, message;
+    String message, abc = "";
+    String aabc = "";
     BluetoothLeService mBluetoothLeService = new BluetoothLeService();
     // 브로드캐스트
     private final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -52,13 +53,33 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_DATA_AVAILABLE_CHANGE.equals(action)) {
-                message = intent.getStringExtra(EXTRA_DATA);
+                message = (intent.getStringExtra(EXTRA_DATA)).substring(0,19);
                 Log.d(TAG, "message = " + message);
-//                textview.setText(message);
+                abc = abc + message;
             }
-//            aabbcc += message;
-            aabbcc = aabbcc + "&&&" + message;
-            textview.setText(aabbcc);
+            Log.d(TAG, "abc = " + abc);
+            textview.setText(abc);
+            // & = end bit로 구분
+//            int i = getCharNumber(abc, '&');
+//            Log.d(TAG, "몇개의 데이터가 있을까? " + i);
+//            String[] str = abc.split("&");
+
+//            String abc;
+//            Log.d(TAG, "str[0] = " + str[0]);
+//            Log.d(TAG, "str[1] = " + str[1]);
+//            for(int y=0; y<i; y++) {
+//                abc =
+//                str[y].substring(12,12) + "번 사용자의 운동값 "
+//                        + str[y].substring(0, 3) + "년도 " + str[y].substring(4, 5) + "월 " + str[y].substring(6, 7) + "일 "
+//                        + str[y].substring(8, 9) + "시 " + str[y].substring(10, 11) + "분 "
+//                        + str[y].substring(13, 16) + "초동안 운동을 진행"
+//                        + str[y].substring(16,16) + "m를 달렸구"
+//                        + str[y].substring(17, 18) + "m/s의 속도로 "
+//                        + "심박수는 " + str[y].substring(19, 21) + "입니다.\n";
+//            Log.d(TAG, "받은 데이터는 : " + abc);
+//                aabc = aabc + abc;
+//            }
+//            textview.setText(aabc);
         }
     };
 
@@ -139,6 +160,17 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
             case R.id.delete_db:
                 break;
         }
+    }
+
+    // 특정문자 반복 갯수 확인
+    int getCharNumber(String str, char c){
+        int cnt = 0;
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i) == c)
+                cnt++;
+        }
+        return cnt;
     }
 
     @Override
