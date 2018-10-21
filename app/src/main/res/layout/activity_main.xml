@@ -58,20 +58,12 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/abc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/getDB"
-            android:layout_alignParentStart="true"
-            android:text="DB조회" />
-
-        <Button
-            android:id="@+id/getDB"
+            android:id="@+id/readDB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/add_device"
             android:layout_alignParentStart="true"
-            android:text="값넣느다잉" />
+            android:text="DB조회" />
 
         <Button
             android:id="@+id/add_device"
