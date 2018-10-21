@@ -1,6 +1,5 @@
 package com.example.elab_yang.treadmill.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,30 +7,26 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
+import com.example.elab_yang.treadmill.R;
+import com.example.elab_yang.treadmill.adapter.MyRecyclerAdapter;
 import com.example.elab_yang.treadmill.model.CardItem2;
 import com.example.elab_yang.treadmill.model.DB;
-import com.example.elab_yang.treadmill.adapter.MyRecyclerAdapter2;
-import com.example.elab_yang.treadmill.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class receiveData extends AppCompatActivity {
-    private final static String TAG = Timeline.class.getSimpleName();
-    Context mContext;
     DB db;
     SQLiteDatabase sql;
 
     String data;
     String abc[] = {"", "", "", "", "", "", ""};
     List<CardItem2> lists;
-    private MyRecyclerAdapter2 mAdapter;
+    private MyRecyclerAdapter mAdapter;
     RecyclerView recycler_view;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +35,6 @@ public class receiveData extends AppCompatActivity {
         db = new DB(this);
         Intent intent = getIntent();
         data = intent.getStringExtra("BLE");
-//        textview.setText(data);
         // & = end bit로 구분
         int i = getCharNumber(data, '&');
 //        Log.d(TAG, "몇개의 데이터가 있을까? " + i);
@@ -50,8 +44,8 @@ public class receiveData extends AppCompatActivity {
         sql = db.getWritableDatabase();
         db.onUpgrade(sql, 1, 2);
         for (int y = 0; y < i; y++) {
-            abc[0] = str[y].substring(12, 13) + "번 사용자의 운동값 ";
-            abc[1] = str[y].substring(0, 4) + "년도 " + str[y].substring(4, 6) + "월 " + str[y].substring(6, 8) + "일 "
+            abc[0] = str[y].substring(12, 13) + "번 사용자 ";
+            abc[1] = str[y].substring(0, 4) + "년 " + str[y].substring(4, 6) + "월 " + str[y].substring(6, 8) + "일 "
              + str[y].substring(8, 10) + "시 " + str[y].substring(10, 12) + "분 ";
             abc[2] = str[y].substring(13, 17) + "초동안 운동을 진행";
             abc[3] = str[y].substring(17, 18) + "m를 달렸구";
@@ -65,21 +59,18 @@ public class receiveData extends AppCompatActivity {
     }
 
     public void setRecyclerView() {
-        // 객체 생성
         recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
         recycler_view.setHasFixedSize(false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        // 반대로 쌓기
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recycler_view.setLayoutManager(layoutManager);
-        // 배열 null 예외처리
         try {
             lists = new ArrayList<>();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mAdapter = new MyRecyclerAdapter2(lists);
+        mAdapter = new MyRecyclerAdapter(lists);
         recycler_view.setAdapter(mAdapter);
     }
 

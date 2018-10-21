@@ -1,7 +1,6 @@
 package com.example.elab_yang.treadmill.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,16 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.elab_yang.treadmill.R;
-import com.example.elab_yang.treadmill.model.CardItem;
+import com.example.elab_yang.treadmill.model.CardItem2;
 
 import java.util.List;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> implements OnLongClickListener {
     Context mContext;
-    private final List<CardItem> mDataList;
+    private final List<CardItem2> mDataList;
 
     // Adapter 초기화 및 생성자로 받은 데이터기반으로 Adapter 내 데이터 세팅
-    public MyRecyclerAdapter(List<CardItem> dataList) {
+    public MyRecyclerAdapter(List<CardItem2> dataList) {
         mDataList = dataList;
     }
 
@@ -37,33 +36,27 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     // 뷰 홀더에 데이터를 설정하는 부분
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        CardItem item = mDataList.get(position);
+        CardItem2 item = mDataList.get(position);
 
         CardView cardview = holder.cardview;
+        TextView user_code = holder.user_code;
         TextView date = holder.date;
         TextView time = holder.time;
-        TextView ei = holder.ei;
-        TextView speed = holder.speed;
         TextView distance = holder.distance;
-        TextView bpm = holder.bpm;
-        TextView kcal = holder.kcal;
+        TextView speed = holder.speed;
+        TextView bpm = holder.bpm;;
 
+        holder.user_code.setText(item.getUser_code());
         holder.date.setText(item.getDate());
         holder.time.setText(item.getTime());
-        holder.ei.setText(item.getEi());
-        holder.speed.setText(item.getSpeed());
         holder.distance.setText(item.getDistance());
+        holder.speed.setText(item.getSpeed());
         holder.bpm.setText(item.getBpm());
-        holder.kcal.setText(item.getKcal());
         // 톡 건드림
 
-        holder.cardview.setOnLongClickListener(new OnLongClickListener(){
-            @Override
-            public boolean onLongClick(View v) {
-                removeAt(position);
-
-                return false;
-            }
+        holder.cardview.setOnLongClickListener(v -> {
+            removeAt(position);
+            return false;
         });
     }
 
@@ -73,7 +66,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         return mDataList.size();
     }
 
-    public void setOnClickListener(DialogInterface.OnClickListener onClickListener) {
+    public void setOnClickListener() {
     }
 
     public void removeAt(int position) {
@@ -92,18 +85,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardview;
-        TextView date, time, ei, speed, distance, bpm, kcal;
+        TextView user_code, date, time, distance, speed, bpm;
 
         public ViewHolder(View itemView) {
             super(itemView);
             cardview = (CardView) itemView.findViewById(R.id.cardview);
+            user_code = (TextView) itemView.findViewById(R.id.user_code);
             date = (TextView) itemView.findViewById(R.id.date);
             time = (TextView) itemView.findViewById(R.id.time);
-            ei = (TextView) itemView.findViewById(R.id.ei);
-            speed = (TextView) itemView.findViewById(R.id.speed);
             distance = (TextView) itemView.findViewById(R.id.distance);
+            speed = (TextView) itemView.findViewById(R.id.speed);
             bpm = (TextView) itemView.findViewById(R.id.bpm);
-            kcal = (TextView) itemView.findViewById(R.id.kcal);
 
             cardview.setOnClickListener(v -> {
 

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.elab_yang.treadmill.model.CardItem2;
 import com.example.elab_yang.treadmill.model.DB;
-import com.example.elab_yang.treadmill.adapter.MyRecyclerAdapter2;
+import com.example.elab_yang.treadmill.adapter.MyRecyclerAdapter;
 import com.example.elab_yang.treadmill.R;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class DBcheckActivity extends AppCompatActivity {
     String data;
     String abc[] = {"", "", "", "", "", "", ""};
     List<CardItem2> lists;
-    private MyRecyclerAdapter2 mAdapter;
+    private MyRecyclerAdapter mAdapter;
     RecyclerView recycler_view;
 
     @Override
@@ -54,7 +54,7 @@ public class DBcheckActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mAdapter = new MyRecyclerAdapter2(lists);
+        mAdapter = new MyRecyclerAdapter(lists);
         recycler_view.setAdapter(mAdapter);
     }
 
