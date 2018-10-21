@@ -1,43 +1,60 @@
 package com.example.elab_yang.treadmill;
 
 import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class getDBActivity extends AppCompatActivity {
-    private static final String TAG = "getDBActivity";
-
+    private final static String TAG = Timeline.class.getSimpleName();
     Context mContext;
     DB db;
     SQLiteDatabase sql;
+
     String data;
-
-    List<CardItem> lists;
-    private MyRecyclerAdapter mAdapter;
+    String abc[] = {"", "", "", "", "", "", ""};
+    List<CardItem2> lists;
+    private MyRecyclerAdapter2 mAdapter;
     RecyclerView recycler_view;
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getdb);
-        //
-        mContext = this;
-
-
         setRecyclerView();
         db = new DB(this);
-        //
-        getDB();
+        TextView textview = (TextView) findViewById(R.id.textview);
+        Intent intent = getIntent();
+        data = intent.getStringExtra("BLE");
+//        textview.setText(data);
+        // & = end bit로 구분
+        int i = getCharNumber(data, '&');
+//        Log.d(TAG, "몇개의 데이터가 있을까? " + i);
+        String[] str = data.split("&");
+//        Log.d(TAG, "str[0] = " + str[0]);
+//        Log.d(TAG, "str[1] = " + str[1]);
+        db.onUpgrade(sql, 1, 2);
+        for (int y = 0; y < i; y++) {
+            abc[0] = str[y].substring(12, 13) + "번 사용자의 운동값 ";
+            abc[1] = str[y].substring(0, 4) + "년도 " + str[y].substring(4, 6) + "월 " + str[y].substring(6, 8) + "일 "
+             + str[y].substring(8, 10) + "시 " + str[y].substring(10, 12) + "분 ";
+            abc[2] = str[y].substring(13, 17) + "초동안 운동을 진행";
+            abc[3] = str[y].substring(17, 18) + "m를 달렸구";
+            abc[4] = str[y].substring(18, 20) + "m/s의 속도로 ";
+            abc[5] =  "심박수는 " + str[y].substring(20, 23) + "입니다.";
+
+            lists.add(new CardItem2(abc[0], abc[1], abc[2], abc[3], abc[4], abc[5]));
+            mAdapter.notifyDataSetChanged();
+            setDB(abc[0], abc[1], abc[2], abc[3], abc[4], abc[5]);
+        }
     }
 
     public void setRecyclerView() {
@@ -55,64 +72,24 @@ public class getDBActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mAdapter = new MyRecyclerAdapter(lists);
+        mAdapter = new MyRecyclerAdapter2(lists);
         recycler_view.setAdapter(mAdapter);
     }
 
-    public void getDB() {
-        sql = db.getReadableDatabase();
-        // 화면 clear
-        data = "";
-        Cursor cursor;
-        cursor = sql.rawQuery("select*from tb_egometer", null);
-        while (cursor.moveToNext()) {
-            data += cursor.getString(0) + ","
-                    + cursor.getString(1) + ","
-                    + cursor.getString(2) + ","
-                    + cursor.getString(3) + ","
-                    + cursor.getString(4) + ","
-                    + cursor.getString(5) + ","
-                    + cursor.getString(6) + ","
-                    + cursor.getString(7) + "\n";
-            lists.add(new CardItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7)));
-        }
-        mAdapter.notifyDataSetChanged();
-        cursor.close();
-        sql.close();
-        Toast.makeText(getApplicationContext(), "조회하였습니다.", Toast.LENGTH_SHORT).show();
-    }
-
-    public void set_setDB(){
-        int cnt = lists.size();
-        Toast.makeText(getApplicationContext(), "cnt = " + cnt, Toast.LENGTH_SHORT).show();
+    public void setDB(String user_code, String date, String time, String distance, String speed, String bpm) {
         sql = db.getWritableDatabase();
-        db.onUpgrade(sql, 1, 2);
-
-        for (int i = 0; i < cnt; i++) {
-            Log.d(TAG, i + " = " + lists.get(i).getDate());
-            Log.d(TAG, i + " = " + lists.get(i).getTime());
-            Log.d(TAG, i + " = " + lists.get(i).getEi());
-            Log.d(TAG, i + " = " + lists.get(i).getSpeed());
-            Log.d(TAG, i + " = " + lists.get(i).getDistance());
-            Log.d(TAG, i + " = " + lists.get(i).getBpm());
-            Log.d(TAG, i + " = " + lists.get(i).getKcal());
-            setDB(lists.get(i).getDate(), lists.get(i).getTime(), lists.get(i).getEi(), lists.get(i).getSpeed(), lists.get(i).getDistance(), lists.get(i).getBpm(), lists.get(i).getKcal());
-        }
-    }
-
-    // DB에 저장하는 메서드
-    public void setDB(String date, String time, String ei, String speed, String distance, String bpm, String kcal) {
-        sql = db.getWritableDatabase();
-
-        sql.execSQL(String.format("INSERT INTO tb_egometer VALUES(null, '%s','%s초','%s','%s','%s','%s','%s')", date, time, ei, speed, distance, bpm, kcal));
+        sql.execSQL(String.format("INSERT INTO tb_treadmill VALUES(null, '%s','%s','%s','%s','%s','%s')", user_code, date, time, distance, speed, bpm));
+        Toast.makeText(getApplicationContext(), "저장햇구요", Toast.LENGTH_SHORT).show();
         sql.close();
     }
-//
-    @Override
-    public void onBackPressed() {
-        set_setDB();
-        finish();
-//
-//        super.onBackPressed();
+
+    // 특정문자 반복 갯수 확인
+    int getCharNumber(String str, char c) {
+        int cnt = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == c)
+                cnt++;
+        }
+        return cnt;
     }
 }

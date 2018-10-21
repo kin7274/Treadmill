@@ -17,8 +17,6 @@ import io.paperdb.Paper;
 
 // 메인이다임마
 public class MainActivity extends AppCompatActivity {
-
-    //
     private static final String TAG = "MainActivity";
     private static final long RIPPLE_DURATION = 250;
     //
@@ -34,25 +32,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //
-        Button getDB = (Button) findViewById(R.id.getDB);
-        getDB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, getDBActivity.class);
-                startActivity(intent);
-            }
-        });
-        //
         Button abc = (Button) findViewById(R.id.abc);
         abc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Timeline.class);
-
+                Intent intent = new Intent(MainActivity.this, DBcheckActivity.class);
                 startActivity(intent);
             }
         });
-
         Paper.init(this);
         //
         Button add_device = (Button) findViewById(R.id.add_device);

@@ -6,18 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DB extends SQLiteOpenHelper {
     public DB(Context context) {
-        super(context, "egometer", null, 1);
+        super(context, "treadmill", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // 인덱스, 오늘날짜, 운동시간, 운동강도, 평균속도, 이동거리, 평균bpm, 소모 칼로리
-        db.execSQL("create table tb_egometer(_id Integer primary key autoincrement, date text, time text, ei text, speed text, distance text, bpm text, kcal text)");
+        db.execSQL("create table tb_treadmill(_id Integer primary key autoincrement, user_code text, date text, time text, distance text, speed text, bpm text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS tb_egometer");
+        db.execSQL("DROP TABLE IF EXISTS tb_treadmill");
         onCreate(db);
     }
 }

@@ -6,26 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Timeline">
 
-    <!--툴바-->
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/my_toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:elevation="4dp">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="16dp"-->
-            <!--android:fontFamily="@font/my_font_family"-->
-            <!--android:text="INSULIN"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="normal" />-->
-    <!--</android.support.v7.widget.Toolbar>-->
-
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
@@ -33,58 +13,33 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/donggihwa"
+            android:id="@+id/receiveBLEandSetDB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="?attr/actionBarSize"
             android:fontFamily="@font/my_font_family"
-            android:text="동기화를 시작합니다"
+            android:text="리시브, 저장"
             android:textColor="#000000"
             android:textSize="20sp" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/viewDB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:fontFamily="@font/my_font_family"
+            android:text="조회"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/insert_db"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/my_font_family"
-                android:text="DB 추가"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/load_db"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/my_font_family"
-                android:text="DB 로드"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/delete_db"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/my_font_family"
-                android:text="DB 삭제"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textview"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="448dp"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:fontFamily="@font/my_font_family"
+            android:textColor="#000"
+            android:textSize="20dp" />
     </LinearLayout>
 </RelativeLayout>

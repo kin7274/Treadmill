@@ -26,7 +26,6 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-
         Button next_btn = (Button) findViewById(R.id.next_btn);
         next_btn.setOnClickListener(v -> {
             // 시작하기

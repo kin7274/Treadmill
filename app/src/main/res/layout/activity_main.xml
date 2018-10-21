@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/getDB"
             android:layout_alignParentStart="true"
-            android:text="값을받자" />
+            android:text="DB조회" />
 
         <Button
             android:id="@+id/getDB"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/add_device"
             android:layout_alignParentStart="true"
-            android:text="DB조회" />
+            android:text="값넣느다잉" />
 
         <Button
             android:id="@+id/add_device"
