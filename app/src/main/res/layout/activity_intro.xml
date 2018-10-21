@@ -3,20 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        app:lottie_fileName="gradient_animated_background.json" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/next_btn"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="147dp"
+        android:layout_marginBottom="161dp"
         android:fontFamily="@font/my_font_family"
         android:gravity="center"
-        android:text="THIS IS 트레드밀!"
-        android:textColor="@color/white"
+        android:text="트레드밀 운동량 기록  어플리케이션"
+        android:textColor="@color/black"
         android:textSize="40sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/next_btn"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -30,10 +42,10 @@
         android:layout_marginBottom="63dp"
         android:fontFamily="@font/my_font_family"
         android:gravity="center"
-        android:text="레쓰기릿"
-        android:textColor="@color/white"
+        android:text="시작해볼까요?"
+        android:textColor="@color/black"
         style="?android:attr/borderlessButtonStyle"
-        android:textSize="40sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

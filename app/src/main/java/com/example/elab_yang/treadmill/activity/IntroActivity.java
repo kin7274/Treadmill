@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.elab_yang.treadmill.R;
 
 public class IntroActivity extends AppCompatActivity {
@@ -28,13 +29,21 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-        // 상태바 제거
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setLottie();
+
         Button next_btn = (Button) findViewById(R.id.next_btn);
         next_btn.setOnClickListener(v -> {
-            // 시작하기
             Intent intent = new Intent(IntroActivity.this, DeviceScanActivity.class);
             startActivity(intent);
         });
+    }
+
+    public void setLottie(){
+        LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.animation_view);
+        animationView.loop(true);
+        animationView.playAnimation();
     }
 }

@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".activity.MachineScanActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/my_font_family"
+            android:text="TREAD MILL"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </android.support.v7.widget.Toolbar>
+
     <Button
         android:id="@+id/button"
         style="?android:attr/borderlessButtonStyle"

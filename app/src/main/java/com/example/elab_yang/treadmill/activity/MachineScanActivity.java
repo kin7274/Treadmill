@@ -25,6 +25,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -62,7 +64,7 @@ public class MachineScanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machine_scan);
-
+        setStatusbar();
         preferences = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
         bleDeviceList = new ArrayList<>();
         handler = new Handler();
@@ -88,6 +90,13 @@ public class MachineScanActivity extends AppCompatActivity {
                 scanLeDevice(false);
             }
         });
+    }
+
+    public void setStatusbar() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryPurle));
     }
 
 

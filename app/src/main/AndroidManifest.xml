@@ -51,7 +51,7 @@
         <activity
             android:name=".activity.MachineScanActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
             android:name=".activity.Timeline"
@@ -68,6 +68,6 @@
         <activity
             android:name=".activity.DBcheckActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 </manifest>
