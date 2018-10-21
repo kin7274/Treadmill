@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.elab_yang.treadmill.model.Device;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setStatusbar();
         // DB값 보는 버튼
         Button readDB = (Button) findViewById(R.id.readDB);
         readDB.setOnClickListener(v -> {
@@ -58,5 +61,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "onCreate: " + "등록된 장비 없음");
         }
+    }
+
+    public void setStatusbar() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryPurle));
     }
 }
