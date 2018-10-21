@@ -28,10 +28,12 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
-        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <LinearLayout
             android:id="@+id/device_layout"
@@ -53,6 +55,7 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:padding="8dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager">
 
             </android.support.v7.widget.RecyclerView>
