@@ -25,61 +25,53 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.elab_yang.treadmill.adapter.DeviceScanAdapter;
 import com.example.elab_yang.treadmill.R;
+import com.example.elab_yang.treadmill.adapter.DeviceScanAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-// 스캔 액티비티
 public class DeviceScanActivity extends AppCompatActivity {
-    //
     private static final String TAG = "DeviceScanActivity";
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1000;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final long SCAN_PERIOD = 10000;
-    //
     BluetoothManager bluetoothManager;
     BluetoothAdapter bluetoothAdapter;
     BluetoothLeScanner bluetoothLeScanner;
-    //
     Button button, button1;
     RecyclerView recyclerView;
-    //
     Handler handler;
-    //
     DeviceScanAdapter adapter;
     ArrayList<BluetoothDevice> bleDeviceList;
-    //
     boolean mScanning;
-    //
     SharedPreferences preferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_scan);
+        setToolbar();
         setStatusbar();
-        //
         preferences = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
-        //
         bleDeviceList = new ArrayList<>();
         handler = new Handler();
 
-        // 다음에 할게요
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener((View v) -> {
-//            SharedPreferences.Editor editor = preferences.edit();
-//            editor.putBoolean("activity_executed", true);
-//            editor.apply();
-//            startActivity(new Intent(DeviceScanActivity.this, MainActivity.class));
-//            finish();
+            Toast.makeText(getApplicationContext(), "수정 예정", Toast.LENGTH_SHORT).show();
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("activity_executed", true);
+            editor.apply();
+            startActivity(new Intent(DeviceScanActivity.this, MainActivity.class));
+            finish();
         });
 
         // 스캔버튼
@@ -106,7 +98,12 @@ public class DeviceScanActivity extends AppCompatActivity {
         checkBluetoothSupport();
     }
 
-    // 상태바 색 변경
+    public void setToolbar() {
+        Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mytoolbar);
+        getSupportActionBar().setTitle("");
+    }
+
     public void setStatusbar() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -138,8 +135,8 @@ public class DeviceScanActivity extends AppCompatActivity {
     private void checkScanPermission() {
         if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("허용1");
-            builder.setMessage("허용2");
+            builder.setTitle("권한 허용");
+            builder.setMessage("위치 권한을 허용해주세욥!");
             builder.setPositiveButton(android.R.string.ok, null);
             builder.setOnDismissListener(dialog -> requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_REQUEST_COARSE_LOCATION));
             builder.show();
@@ -155,7 +152,7 @@ public class DeviceScanActivity extends AppCompatActivity {
                 handler.postDelayed(() -> {
                     mScanning = false;
                     bluetoothLeScanner.stopScan(leScanCallback);
-                    button.setText("SCAN");
+                    button1.setText("SCAN");
                 }, SCAN_PERIOD);
                 mScanning = true;
                 startNEWBTLEDiscovery();
@@ -274,12 +271,12 @@ public class DeviceScanActivity extends AppCompatActivity {
     private ScanSettings getScanSettings() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return new ScanSettings.Builder()
-                    .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-                    .setMatchMode(ScanSettings.MATCH_MODE_STICKY)
+                    .setScanMode(android.bluetooth.le.ScanSettings.SCAN_MODE_LOW_LATENCY)
+                    .setMatchMode(android.bluetooth.le.ScanSettings.MATCH_MODE_STICKY)
                     .build();
         } else {
             return new ScanSettings.Builder()
-                    .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                    .setScanMode(android.bluetooth.le.ScanSettings.SCAN_MODE_LOW_LATENCY)
                     .build();
         }
     }
