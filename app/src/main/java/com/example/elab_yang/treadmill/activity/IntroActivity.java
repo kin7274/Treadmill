@@ -14,7 +14,6 @@ public class IntroActivity extends AppCompatActivity {
     SharedPreferences pref;
     @Override
     protected void onStart() {
-
         super.onStart();
         pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
         if(pref.getBoolean("activity_executed", false)){
