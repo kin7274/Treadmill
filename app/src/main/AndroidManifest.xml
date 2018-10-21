@@ -26,7 +26,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntroActivity">
+        <activity android:name=".activity.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,27 +34,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DeviceScanActivity"
+            android:name=".activity.DeviceScanActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".getDBActivity"
+            android:name=".activity.receiveData"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".MachineScanActivity"
+            android:name=".activity.MachineScanActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".Timeline"
+            android:name=".activity.Timeline"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
@@ -62,11 +62,11 @@
             android:name=".BluetoothLeService"
             android:enabled="true" />
         <activity
-            android:name=".DeviceControlActivity"
+            android:name=".activity.DeviceControlActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".DBcheckActivity"
+            android:name=".activity.DBcheckActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

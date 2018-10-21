@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.activity;
 
 
 import android.Manifest;
@@ -27,6 +27,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.elab_yang.treadmill.EGZeroConst;
+import com.example.elab_yang.treadmill.adapter.MachineScanAdapter;
+import com.example.elab_yang.treadmill.R;
 
 import java.util.ArrayList;
 import java.util.List;

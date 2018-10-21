@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +8,20 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.elab_yang.treadmill.model.CardItem2;
+import com.example.elab_yang.treadmill.model.DB;
+import com.example.elab_yang.treadmill.adapter.MyRecyclerAdapter2;
+import com.example.elab_yang.treadmill.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class getDBActivity extends AppCompatActivity {
+public class receiveData extends AppCompatActivity {
     private final static String TAG = Timeline.class.getSimpleName();
     Context mContext;
     DB db;
@@ -31,7 +38,6 @@ public class getDBActivity extends AppCompatActivity {
         setContentView(R.layout.activity_getdb);
         setRecyclerView();
         db = new DB(this);
-        TextView textview = (TextView) findViewById(R.id.textview);
         Intent intent = getIntent();
         data = intent.getStringExtra("BLE");
 //        textview.setText(data);

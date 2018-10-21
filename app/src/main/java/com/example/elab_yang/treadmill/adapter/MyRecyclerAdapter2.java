@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.elab_yang.treadmill.R;
+import com.example.elab_yang.treadmill.model.CardItem2;
 
 import java.util.List;
 

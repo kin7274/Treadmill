@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.activity;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -29,13 +29,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.elab_yang.treadmill.BluetoothLeService;
+import com.example.elab_yang.treadmill.R;
+import com.example.elab_yang.treadmill.SampleGattAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;

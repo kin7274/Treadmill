@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.activity;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,6 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
+
+import com.example.elab_yang.treadmill.model.CardItem2;
+import com.example.elab_yang.treadmill.model.DB;
+import com.example.elab_yang.treadmill.adapter.MyRecyclerAdapter2;
+import com.example.elab_yang.treadmill.R;
 
 import java.util.ArrayList;
 import java.util.List;

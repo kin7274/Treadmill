@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.activity;
 
 import android.support.v7.app.AppCompatActivity;
 

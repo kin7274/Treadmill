@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.elab_yang.treadmill.R;
+import com.example.elab_yang.treadmill.activity.MainActivity;
+import com.example.elab_yang.treadmill.model.Device;
 
 import java.util.ArrayList;
 import java.util.HashSet;

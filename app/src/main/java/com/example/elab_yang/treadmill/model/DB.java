@@ -1,4 +1,4 @@
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

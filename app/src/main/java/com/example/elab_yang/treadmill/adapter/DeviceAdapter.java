@@ -15,10 +15,9 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>. */
-package com.example.elab_yang.treadmill;
+package com.example.elab_yang.treadmill.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -33,7 +32,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.elab_yang.treadmill.EGZeroConst;
+import com.example.elab_yang.treadmill.R;
+import com.example.elab_yang.treadmill.activity.DeviceControlActivity;
+import com.example.elab_yang.treadmill.activity.Timeline;
+import com.example.elab_yang.treadmill.model.Device;
 
 import java.util.ArrayList;
 import java.util.HashSet;
