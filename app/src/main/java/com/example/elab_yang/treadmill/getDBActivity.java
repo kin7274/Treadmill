@@ -41,6 +41,7 @@ public class getDBActivity extends AppCompatActivity {
         String[] str = data.split("&");
 //        Log.d(TAG, "str[0] = " + str[0]);
 //        Log.d(TAG, "str[1] = " + str[1]);
+        sql = db.getWritableDatabase();
         db.onUpgrade(sql, 1, 2);
         for (int y = 0; y < i; y++) {
             abc[0] = str[y].substring(12, 13) + "번 사용자의 운동값 ";

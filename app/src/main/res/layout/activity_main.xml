@@ -58,19 +58,19 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/readDB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/add_device"
-            android:layout_alignParentStart="true"
-            android:text="DB조회" />
-
-        <Button
             android:id="@+id/add_device"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="장치 추가" />
+
+        <Button
+            android:id="@+id/readDB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_device"
+            android:layout_alignParentStart="true"
+            android:text="DB를 볼까?" />
     </RelativeLayout>
 
 </FrameLayout>

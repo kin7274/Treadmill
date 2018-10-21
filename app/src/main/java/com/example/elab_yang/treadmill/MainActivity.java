@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // DB값 보러가는 버튼
+        // DB값 보는 버튼
         Button readDB = (Button) findViewById(R.id.readDB);
         readDB.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, DBcheckActivity.class);
             startActivity(intent);
         });
-        //
+        // 장치 추가 버튼
         Button add_device = (Button) findViewById(R.id.add_device);
         add_device.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MachineScanActivity.class)));
         //

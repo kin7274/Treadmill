@@ -6,20 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.elab_yang.treadmill.BluetoothLeService.ACTION_DATA_AVAILABLE;
 import static com.example.elab_yang.treadmill.BluetoothLeService.ACTION_DATA_AVAILABLE_CHANGE;
@@ -34,10 +28,19 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
     Button receiveBLEandSetDB;
     // DB 보기
     Button viewDB;
-
+    //
     String deviceAddress = "";
     String message, abc = "";
-
+    Handler handler = new Handler();
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            Intent intent = new Intent(Timeline.this, getDBActivity.class);
+            intent.putExtra("BLE", abc);
+            startActivity(intent);
+            finish();
+        }
+    };
     //
     BluetoothLeService mBluetoothLeService = new BluetoothLeService();
     private final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -90,6 +93,9 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
         registerReceiver(mMessageReceiver, intentfilter);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+        //
+        Toast.makeText(getApplicationContext(), "SD카드 데이터를 불러옵니다!", Toast.LENGTH_SHORT).show();
+        mBluetoothLeService.writeCharacteristic("o");
     }
 
     public void set() {
@@ -104,9 +110,8 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             // 읽고 저장
             case R.id.receiveBLEandSetDB:
-                mBluetoothLeService.writeCharacteristic("o");
                 break;
-                // 인텐트로 abc값을 보내
+            // 인텐트로 abc값을 보내
             case R.id.viewDB:
                 Intent intent = new Intent(Timeline.this, getDBActivity.class);
                 intent.putExtra("BLE", abc);
@@ -116,34 +121,7 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-//    public void set_setDB() {
-//        int cnt = lists.size();
-//        int i = getCharNumber(abc, '&');
-//
-//        Toast.makeText(getApplicationContext(), "cnt = " + cnt, Toast.LENGTH_SHORT).show();
-//        sql = db.getWritableDatabase();
-//        db.onUpgrade(sql, 1, 2);
-//
-//        for (int i = 0; i < cnt; i++) {
-//            Log.d(TAG, i + " = " + lists.get(i).getDate());
-//            Log.d(TAG, i + " = " + lists.get(i).getTime());
-//            Log.d(TAG, i + " = " + lists.get(i).getEi());
-//            Log.d(TAG, i + " = " + lists.get(i).getSpeed());
-//            Log.d(TAG, i + " = " + lists.get(i).getDistance());
-//            Log.d(TAG, i + " = " + lists.get(i).getBpm());
-//            Log.d(TAG, i + " = " + lists.get(i).getKcal());
-//            setDB(lists.get(i).getDate(), lists.get(i).getTime(), lists.get(i).getEi(), lists.get(i).getSpeed(), lists.get(i).getDistance(), lists.get(i).getBpm(), lists.get(i).getKcal());
-//        }
-//    }
-
-    // DB에 저장하는 메서드
-//    public void setDB(String date, String time, String ei, String speed, String distance, String bpm, String kcal) {
-//        sql = db.getWritableDatabase();
-//
-//        sql.execSQL(String.format("INSERT INTO tb_treadmill VALUES(null, '%s','%s초','%s','%s','%s','%s','%s')", date, time, ei, speed, distance, bpm, kcal));
-//        sql.close();
-//    }
-
+    // 종료ㅡ 서비스도
     @Override
     protected void onDestroy() {
         unbindService(mServiceConnection);
@@ -153,12 +131,16 @@ public class Timeline extends AppCompatActivity implements View.OnClickListener 
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onResume() {
+        super.onResume();
+        // 2초 뒤에 Runnable 객체 수행
+        handler.postDelayed(r, 2000);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onPause() {
+        super.onPause();
+        // 예약 취소
+        handler.removeCallbacks(r);
     }
 }

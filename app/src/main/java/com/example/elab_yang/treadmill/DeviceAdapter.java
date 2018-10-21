@@ -81,12 +81,9 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         // 동기화
         holder.fetchActivityData.setOnClickListener(v -> {
             Log.e("클릭됨", "onClick: 클릭툄" + EGZeroConst.DEVICE_NAME);
-//            Toast.makeText(context, "동기화는 못해유", Toast.LENGTH_SHORT).show();
-            Toast.makeText(context, "o를입력한다", Toast.LENGTH_SHORT).show();
             Intent bsmIntent1 = new Intent(context, Timeline.class);
             bsmIntent1.putExtra(REAL_TIME_INDOOR_BIKE_DEVICE, deviceAddress);
             context.startActivity(bsmIntent1);
-
         });
 
         // 운동하러ㄱ
@@ -102,13 +99,8 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         holder.deviceInfoView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(EGZeroConst.DEVICE_NAME);
-            builder.setMessage("에르고미터(실내자전거). 실내에서 탈 수 있는 자전거.");
-            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+            builder.setMessage("트레드밀입니다.");
+            builder.setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss());
             builder.show();
         });
 
