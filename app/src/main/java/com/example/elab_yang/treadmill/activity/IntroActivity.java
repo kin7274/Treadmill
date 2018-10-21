@@ -32,18 +32,10 @@ public class IntroActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setLottie();
-
         Button next_btn = (Button) findViewById(R.id.next_btn);
         next_btn.setOnClickListener(v -> {
             Intent intent = new Intent(IntroActivity.this, DeviceScanActivity.class);
             startActivity(intent);
         });
-    }
-
-    public void setLottie(){
-        LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.animation_view);
-        animationView.loop(true);
-        animationView.playAnimation();
     }
 }

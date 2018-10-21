@@ -3,16 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        app:lottie_fileName="gradient_animated_background.json" />
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:layout_width="match_parent"
@@ -26,15 +18,15 @@
         android:fontFamily="@font/my_font_family"
         android:gravity="center"
         android:text="트레드밀 운동량 기록  어플리케이션"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40sp"
-        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/next_btn"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/next_btn"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -43,8 +35,7 @@
         android:fontFamily="@font/my_font_family"
         android:gravity="center"
         android:text="시작해볼까요?"
-        android:textColor="@color/black"
-        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
