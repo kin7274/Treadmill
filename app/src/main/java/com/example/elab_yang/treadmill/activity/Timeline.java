@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -29,10 +30,7 @@ import static com.example.elab_yang.treadmill.IntentConst.REAL_TIME_INDOOR_BIKE_
 public class Timeline extends AppCompatActivity {
     private final static String TAG = Timeline.class.getSimpleName();
     Context mContext;
-    // BLE값 읽어오기, 저장
-    Button receiveBLEandSetDB;
-    // DB 보기
-    Button viewDB;
+    TextView text1, text2;
     //
     String deviceAddress = "";
     String message, abc = "";
@@ -40,6 +38,8 @@ public class Timeline extends AppCompatActivity {
     Runnable r = new Runnable() {
         @Override
         public void run() {
+            text1.setVisibility(View.GONE);
+            text2.setVisibility(View.VISIBLE);
             Intent intent = new Intent(Timeline.this, receiveData.class);
             intent.putExtra("BLE", abc);
             startActivity(intent);
@@ -89,6 +89,7 @@ public class Timeline extends AppCompatActivity {
         // 상태바 제거
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setLottie();
+        set();
         //
         deviceAddress = getIntent().getStringExtra(REAL_TIME_INDOOR_BIKE_DEVICE);
         if (deviceAddress != null) {
@@ -101,7 +102,6 @@ public class Timeline extends AppCompatActivity {
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
         //
-        Toast.makeText(getApplicationContext(), "SD카드 데이터를 불러옵니다!", Toast.LENGTH_SHORT).show();
         mBluetoothLeService.writeCharacteristic("o");
     }
 
@@ -111,6 +111,12 @@ public class Timeline extends AppCompatActivity {
         animationView.playAnimation();
     }
 
+    public void set(){
+        text1 = (TextView) findViewById(R.id.text1);
+        text2 = (TextView) findViewById(R.id.text2);
+        text1.setVisibility(View.VISIBLE);
+        text2.setVisibility(View.GONE);
+    }
     // 종료ㅡ 서비스도
     @Override
     protected void onDestroy() {
