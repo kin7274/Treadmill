@@ -26,6 +26,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -63,6 +65,7 @@ public class DeviceScanActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_scan);
+        setStatusbar();
         //
         preferences = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
         //
@@ -101,6 +104,14 @@ public class DeviceScanActivity extends AppCompatActivity {
         checkBleSupport();
         getBluetoothAdapter();
         checkBluetoothSupport();
+    }
+
+    // 상태바 색 변경
+    public void setStatusbar() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryPurle));
     }
 
     private void checkBleSupport() {
