@@ -27,12 +27,8 @@
             android:textStyle="normal" />
     </android.support.v7.widget.Toolbar>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_gravity="top" />
-
     <LinearLayout
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -48,15 +44,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:fontFamily="@font/my_font_family"
                 android:text="등록된 디바이스"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <android.support.v7.widget.RecyclerView
-
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager">
 
             </android.support.v7.widget.RecyclerView>
