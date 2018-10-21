@@ -44,14 +44,14 @@ public class receiveData extends AppCompatActivity {
         sql = db.getWritableDatabase();
         db.onUpgrade(sql, 1, 2);
         for (int y = 0; y < i; y++) {
-            abc[0] = str[y].substring(12, 13) + "번 사용자 ";
-            abc[1] = str[y].substring(0, 4) + "년 " + str[y].substring(4, 6) + "월 " + str[y].substring(6, 8) + "일 "
+            abc[0] = "사용자" + str[y].substring(12, 13);
+            abc[1] = str[y].substring(2, 4) + "년 " + str[y].substring(4, 6) + "월 " + str[y].substring(6, 8) + "일 "
              + str[y].substring(8, 10) + "시 " + str[y].substring(10, 12) + "분 ";
-            abc[2] = str[y].substring(13, 17) + "초동안 운동을 진행";
-            abc[3] = str[y].substring(17, 18) + "m를 달렸구";
-            abc[4] = str[y].substring(18, 20) + "m/s의 속도로 ";
-            abc[5] =  "심박수는 " + str[y].substring(20, 23) + "입니다.";
-
+            abc[2] = str[y].substring(13, 15).replace("0", "") + str[y].substring(15, 17) + "초";
+            abc[3] = str[y].substring(17, 18) + "km";
+            abc[4] = str[y].substring(18, 20) + "m/s";
+            abc[5] = str[y].substring(20, 23);
+            //
             lists.add(new CardItem2(abc[0], abc[1], abc[2], abc[3], abc[4], abc[5]));
             mAdapter.notifyDataSetChanged();
             setDB(abc[0], abc[1], abc[2], abc[3], abc[4], abc[5]);
