@@ -56,7 +56,7 @@
         <activity
             android:name=".activity.Timeline"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/Theme.Design.NoActionBar" />
 
         <service
             android:name=".BluetoothLeService"
