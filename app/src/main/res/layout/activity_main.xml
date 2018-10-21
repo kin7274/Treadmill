@@ -78,18 +78,26 @@
 
         <Button
             android:id="@+id/add_device"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="장치 추가" />
+            android:fontFamily="@font/my_font_family"
+            android:text="장치 추가"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/readDB"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/add_device"
             android:layout_alignParentStart="true"
-            android:text="DB를 볼까?" />
+            android:fontFamily="@font/my_font_family"
+            android:text="DB를 볼까?"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
     </RelativeLayout>
 
 </FrameLayout>
